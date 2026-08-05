@@ -46,13 +46,9 @@ def select_crop(image, max_width, max_height):
 
 def select_images():
 
-    # Create a Tkinter window
     root = tk.Tk()
-    # Hide window
     root.withdraw()
 
-    # Let the user select one or more checkerboard photographs
-    # "image_paths" is a tuple that stores image file paths in order
     image_paths = filedialog.askopenfilenames(
         title="Select checkerboard photographs, hold ctrl to select multiple",
         filetypes=[
@@ -61,20 +57,18 @@ def select_images():
         ]
     )
 
-    # Stop if no photographs were selected.
-    # "not" returns True when a value is empty, zero, False, or Non
     if not image_paths:
         print("No images were selected.")
-        # Close root window
         root.destroy()
-        # Stop program
         raise SystemExit
+
+    return image_paths
 
 def ask_user_input(prompt, title="User input"):
     """
-    Display a text-entry window and return the entered text.
-
-    Returns None if the user presses Cancel or closes the window.
+    Purpose: Request user input with text box
+    Parameter(s): prompt, tit;e
+    Return(s): user_input
     """
 
     root = tk.Tk()
@@ -107,5 +101,3 @@ def find_user_input(text, known_x_values, known_y_values):
         known_y_values
     )
     return requested_y
-
-ask_user_input("this is it", "hi")
