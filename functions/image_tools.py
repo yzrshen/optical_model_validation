@@ -181,3 +181,17 @@ def fitted_edge_positions(image, edge_positions):
 
     return fitted_edge_positions
 
+def add_green_border(image, margin):
+
+    image = cv2.cvtColor(
+    image,
+    cv2.COLOR_GRAY2BGR
+    )
+
+    image = cv2.copyMakeBorder(
+        image,
+        margin, margin, margin, margin,
+        cv2.BORDER_CONSTANT,
+        value=(0, 255, 0)
+    )
+    return image

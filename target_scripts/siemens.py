@@ -1,8 +1,35 @@
 import cv2
 import numpy as np
 from pathlib import Path
-from functions.image_tools import array_to_image
 
+def array_to_image(array, image_name):
+
+    # Save array as image file
+    saved = cv2.imwrite(f"targets/{image_name}.png", array)
+    if not saved:
+        raise SystemExit("Image could not be saved")
+    
+    # Show image
+    cv2.imshow("image", array)
+
+    # Show indefinitely until key is pressed (0 = no time limit)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def add_green_border(image, margin):
+
+    image = cv2.cvtColor(
+    image,
+    cv2.COLOR_GRAY2BGR
+    )
+
+    image = cv2.copyMakeBorder(
+        image,
+        margin, margin, margin, margin,
+        cv2.BORDER_CONSTANT,
+        value=(0, 255, 0)
+    )
+    return image
 
 # Image settings
 image_size_px = 1500
@@ -48,6 +75,9 @@ star = cv2.resize(
     (image_size_px, image_size_px),
     interpolation=cv2.INTER_AREA
 )
+
+# Add green border
+star = add_green_border(star, margin_px)
 
 # Save and display image
 array_to_image(star, "siemens_star")
