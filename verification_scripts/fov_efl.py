@@ -42,23 +42,9 @@ if not image_paths:
 # ---------------------------------------------------------
 
 # Enter the number of inner corners
-corner_rows = simpledialog.askinteger(
-    "Checkerboard information",
-    "Number of inner-corner rows:",
-    
-    # Full prototype of "askinteger()"
-    initialvalue=None, # Displays this value at the start
-    minvalue=2,
-    maxvalue=None,
-    parent=None # Tells Tkinter which window the dialog belongs to
-                # Tkinter automatically assigns to default root window
-)
+corner_rows = 9
 
-corner_columns = simpledialog.askinteger(
-    "Checkerboard information",
-    "Number of inner-corner columns:",
-    minvalue=2
-)
+corner_columns = 9
 
 square_size_mm = simpledialog.askfloat(
     "Checkerboard information",

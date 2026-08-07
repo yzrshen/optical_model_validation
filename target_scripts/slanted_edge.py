@@ -2,11 +2,19 @@ import numpy as np
 import cv2
 import math
 
-import sys
-from pathlib import Path
-parent_folder = Path(__file__).resolve().parent.parent
-sys.path.append(str(parent_folder))
-from functions.image_tools import array_to_image
+def array_to_image(array, image_name):
+
+    # Save array as image file
+    saved = cv2.imwrite(f"targets/{image_name}.png", array)
+    if not saved:
+        raise SystemExit("Image could not be saved")
+    
+    # Show image
+    cv2.imshow("image", array)
+
+    # Show indefinitely until key is pressed (0 = no time limit)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 image_width = 1500
 image_height = 1500
