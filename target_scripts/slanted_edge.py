@@ -16,8 +16,8 @@ def array_to_image(array, image_name):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-image_width = 1500
-image_height = 1500
+image_width = 2500
+image_height = 2500
 slant_angle = math.radians(5)
 margin = 80
 
