@@ -1,5 +1,13 @@
 # Optical Model Validation
 
+## TODO:
+- Finish Zemax Setup
+- Add Zemax comparison instructions to B-F
+- Fix FOV/EFL table
+- FOV/EFL procedure
+- MTF procedure
+- Add images
+
 ## Overview
 This repository contains the tools and instructions needed to experimentally validate the accuracy of a digital optical model (e.g., Ansys Zemax OpticStudio) against its corresponding physical counterpart. 
 The objective is to create a repeatable procedure for conducting a preliminary comparison of an optical system's simulated and experimental performance. The results can then be used to assess the simulation’s credibility for subsequent optical analysis. 
@@ -41,7 +49,7 @@ optical_model_validation/
     └── README.md              # Project documentation
 ```
 
-## Procedure
+## Preparation
 
 ### Required Equipment
 - Optical system for test
@@ -49,6 +57,28 @@ optical_model_validation/
 - Printed imaging targets
 - Digital calipers with at least a 0.01 mm resolution
 - Measuring tape
+
+### Software Setup
+
+Install [Python](https://www.python.org/downloads/) and [Git](https://git-scm.com/downloads) before continuing.
+
+Open a terminal and run the following commands:
+
+1. Clone the repository and enter the project folder
+
+   ```bash
+   git clone <https://github.com/yzrshen/optical_model_validation.git>
+   cd optical_model_validation
+   ```
+2. Install required packages
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Zemax Setup
+
+Install [Ansys Zemax OpticStudio](https://ansys.synopsys.com/en-gb//academic/students/ansys-student)
 
 ### Physical Setup 
 
@@ -66,25 +96,9 @@ optical_model_validation/
 
 7. Record results in [this spreadsheet template](https://docs.google.com/spreadsheets/d/19bQ3YoSR_WSW7G-d8i1SoJNDLfoneezhGHcqGAoD-7E/edit?usp=sharing)
 
-### Software Setup
+## Test Procedures
 
-**Prerequisites:** Install [Python](https://www.python.org/downloads/) and [Git](https://git-scm.com/downloads) before continuing.
-
-Open a terminal and run the following commands:
-
-1. Clone the repository and enter the project folder
-
-   ```bash
-   git clone <https://github.com/yzrshen/optical_model_validation.git>
-   cd optical_model_validation
-   ```
-2. Install required packages
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-### Best Focus Test
+### Best Focus
 
 1. Prepare Siemens star target
 2. Establish a rough expected best-focus position. Offset the thread by 0.80mm from the expected best-focus position
@@ -96,7 +110,8 @@ Open a terminal and run the following commands:
 8. Offset the thread by 0.25mm from the new expected best-focus position.
 9. Perform a "fine sweep". Repeat steps 5 and 6 with a new increment of 0.03mm. 
 10. Determine the best focus position from the peak of the graph
-11. Record thread position and corresponding laplacian value outputs from the terminal into the data entry template
+11. Compare 
+12. Record thread position and corresponding laplacian value outputs from the terminal into the data entry template
 
 ### Field of View and Effective Focal Length
 
