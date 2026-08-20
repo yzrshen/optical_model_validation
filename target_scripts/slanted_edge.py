@@ -19,7 +19,7 @@ def array_to_image(array, image_name):
 image_width = 2500
 image_height = 2500
 slant_angle = math.radians(5)
-margin = 80
+margin = 100
 
 x_center = (image_width - 1) / 2
 y_center = (image_height - 1) / 2
