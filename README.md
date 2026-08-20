@@ -6,6 +6,7 @@
 - "What can we conclude" in overview
 - Fix FOV/EFL table
 - MTF procedure
+- Table of contents
 - Add images
     - "ensure graph looks like this"
     - combo image of targets
@@ -26,6 +27,8 @@ The objective is to create a repeatable procedure for conducting a preliminary c
 - 2500 x 2500 px Siemens star target
 - 10 x 10 checkerboard pattern
 - 2500 x 2500 px slanted edge target with 5&deg; edge angle 
+
+<img src="figures/targets.png" alt="Imaging targets" width="350">
 
 Respective scripts for generating each target are included. Target dimensions and other image parameters can be easily modified.
 
@@ -86,12 +89,13 @@ Open a terminal and run the following commands:
 
    ```bash
    mkdir test_images
-
+   ```
+   
 ### Zemax Setup
 
 Install [Ansys Zemax OpticStudio](https://ansys.synopsys.com/en-gb//academic/students/ansys-student)
 
-### General Setup 
+### General Setup
 
 1. Print targets on matte-white paper/cardstock with the highest print quality setting available. Disable any options such as "fit to page" that changes the target dimensions 
 
@@ -99,23 +103,21 @@ Install [Ansys Zemax OpticStudio](https://ansys.synopsys.com/en-gb//academic/stu
 
 3. Align targets onto a vertical surface, perpendicular to the camera's optical axis
 
-4. Position camera so that targets appear as large as possible while ensuring the margins fit comfortably within the image
+4. Ensure the targets are flat and evenly illuminated. Try to eliminate glare, shadows, and reflections 
 
-5. Ensure the targets are flat and evenly illuminated. Try to eliminate glare, shadows, and reflections 
+5. Disable automatic image adjustments where possible
 
-6. Disable automatic image adjustments where possible
-
-8. Record results in [this spreadsheet template](https://docs.google.com/spreadsheets/d/19bQ3YoSR_WSW7G-d8i1SoJNDLfoneezhGHcqGAoD-7E/edit?usp=sharing)
+6. Record results in [this spreadsheet template](https://docs.google.com/spreadsheets/d/19bQ3YoSR_WSW7G-d8i1SoJNDLfoneezhGHcqGAoD-7E/edit?usp=sharing)
 
 ## Test Procedures
 
 ### Best Focus
 
-1. Prepare Siemens star target and general setup
+1. Prepare Siemens star target
 2. Align the center of the target with the camera's optical axis
-3. Measure and record parallel to the optical axis the distance between target plane and front face of the lens housing
+3. Determine an object distance to be used. Measure and record parallel to the optical axis the distance between target plane and front face of the lens housing
 4. Establish a rough expected best-focus position. Offset the thread by 0.80mm from the expected best-focus position
-5. Capture an image of the target. Save the image file in test_images/ and rename the image with thread position information
+5. Capture an image of the target. Save the image to ``test_images/`` and rename with thread position information
 6. Adjust the thread by an increment of 0.10mm towards the direction of the expected best-focus position
 7. Perform a "coarse sweep". Repeat steps 5 and 6 until 15 images are captured. Ensure each increment is constant for this step
 8. Run the "best_focus.py" analysis script using the images taken in the last sweep
@@ -130,14 +132,20 @@ Install [Ansys Zemax OpticStudio](https://ansys.synopsys.com/en-gb//academic/stu
 
 1. Prepare checkerboard target and general setup
 2. Measure the size of each square in milimeters
-3. Position camera so that target takes up roughly 50% - 80% of the frame
-3. Align the center of the target with the camera's optical axis
-4. Measure and record parallel to the optical axis the distance between target plane and front face of the lens housing
-5. Capture at least 3 images without adjusting the setup
-6. Run "fov_efl.py" analysis script with only images taken from the same object distance
-7. Perform steps 3-7 for 2 other distances
-8. Record mean EFL, horizontal half-field, and vertical half-field for all 3 trials 
+3. Position setup so that target takes up roughly 50% - 80% of the frame
+4. Align the center of the target with the camera's optical axis
+5. Focus camera lens
+5. Measure and record parallel to the optical axis the distance between target plane and front face of the lens housing
+6. Capture at least 3 images without adjusting the setup. Save images to ``test_images/``
+7. Run "fov_efl.py" analysis script with only images taken from the same object distance
+8. Perform steps 3-8 two more times, adjusting the object distance for each trial
+9. Record mean EFL, horizontal half-field, and vertical half-field for all 3 trials 
 
 ### Modulation Transfer Function (MTF)
 
-1. Use the thread position determined in "Best Focus " for the latter procedures
+1. Prepare slanted edge target
+2. Position setup so that the target takes up 10-20% of the image width
+3. Measure and record parallel to the optical axis the distance between target plane and front face of the lens housing
+4. Run the **best focus test** to produce the sharpest image for this object distance. Lock the focus mechanism in place
+5. Align center region of the slanted edge with the optical axis and capture an image
+6. 
